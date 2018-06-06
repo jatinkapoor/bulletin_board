@@ -7,6 +7,13 @@ module.exports = function (sequelize, DataTypes) {
         len: [1],
       },
     },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,14 +29,5 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
   });
-
-  Post.associate = function (models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
-    Post.hasMany(models.Comment, {
-      onDelete: 'cascade',
-    });
-  };
-
   return Post;
 };

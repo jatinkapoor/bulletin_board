@@ -11,7 +11,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('express-mysql-session');
 const bcrypt = require('bcryptjs');
 
-
+// Routes
 const postsRouter = require('./routes/posts');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
@@ -111,6 +111,5 @@ function authenticationMiddleware() {
     res.redirect('/login');
   };
 }
-
 
 module.exports = app;
