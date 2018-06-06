@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  
   $(".delete").on("click", function (event) {
     event.stopPropagation();
     const id = $(this).attr('id').split('-')[1];

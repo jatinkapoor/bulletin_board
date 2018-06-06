@@ -124,6 +124,12 @@ ul.notes li div {
   border: 1px solid #563d7c;
 }
 
+.fa-trash-alt {
+  padding: 0 !important;
+  text-align: right;
+
+}
+
 .social a {
   font-size: 3em;
   padding: 3rem;

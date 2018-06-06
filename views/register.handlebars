@@ -13,9 +13,9 @@
           <img src="/assets/img/face.png" alt="">
         </div>
         <div class="col-12 form-input">
-          <form method="POST" action="/register">
+          <form id="my-registration-form">
             <div class="form-group login-form-group login-form-group-email">
-              <input id="registration-username" name="username" type="email" class="form-control" placeholder="Enter Name">
+              <input id="registration-username" name="username" type="name" class="form-control" placeholder="Enter Name">
             </div>
             <div class="form-group login-form-group login-form-group-email">
               <input id="registration-email" name="email" type="email" class="form-control" placeholder="Enter Email">
@@ -24,7 +24,7 @@
               <input id="registration-pass" name="password" type="password" class="form-control" placeholder="Enter Password">
             </div>
             <div class="form-group login-form-group login-form-group-password">
-              <input id="registration-pass" name="confirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+              <input id="registration-confpass" name="confirmPassword" type="password" class="form-control" placeholder="Confirm Password">
             </div>
             <button id="login-form" name="login" type="submit" class="btn btn-success login-button">
               <i class="fas fa-sign-in-alt"></i>Register</button>
@@ -39,3 +39,22 @@
     </div>
   </div>
 </div>
+<script>
+  const registrationForm = document.getElementById('my-registration-form');
+  registrationForm.onsubmit = function (e) {
+    e.preventDefault();
+    console.log(registrationForm.username.value);
+    console.log(registrationForm.email.value);
+    console.log(registrationForm.password.value);
+    console.log(registrationForm.confirmPassword.value);
+    if (registrationForm.username.value
+          && registrationForm.email.value
+            && registrationForm.password.value
+              && registrationForm.confirmPassword.value 
+                && registrationForm.confirmPassword.value === registrationForm.password.value) {
+      registrationForm.setAttribute("method", "POST");
+      registrationForm.setAttribute("action", "/register");
+      registrationForm.submit();
+    }
+  }
+</script>

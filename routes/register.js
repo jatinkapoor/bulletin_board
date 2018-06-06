@@ -18,12 +18,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res, next) => {
-  req.checkBody('username', 'Username field cannot be empty.').notEmpty();
-  req.checkBody('email', 'Email field cannot be empty.').notEmpty();
-  req.checkBody('password', 'Password field cannot be empty.').notEmpty();
-  req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
   req.checkBody('confirmPassword', 'Passwords do not match, please try again.').equals(req.body.password);
-
   const errors = req.validationErrors();
   if (errors) {
     res.render('register', {

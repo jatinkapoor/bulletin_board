@@ -6,7 +6,7 @@
         <img src="/assets/img/face.png" alt="">
       </div>
       <div class="col-12 form-input">
-        <form method="POST" action="/login">
+        <form id="my-login-form">
           <div class="form-group login-form-group login-form-group-email">
             <input id="login-email" name="username" type="email" class="form-control" placeholder="Enter Email">
           </div>
@@ -25,3 +25,14 @@
   </div>
 </div>
 </div>
+<script>
+  const loginForm = document.getElementById('my-login-form');
+  loginForm.onsubmit = function(e) {
+    e.preventDefault();
+    if (loginForm.username.value && loginForm.password.value) {
+      loginForm.setAttribute("method", "POST");
+      loginForm.setAttribute("action", "/login");
+      loginForm.submit();
+    }
+  }
+</script>

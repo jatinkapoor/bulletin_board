@@ -11,12 +11,12 @@
     {{#each posts}}
     <li>
       <div class="rotate-1 lazur-bg">
+        <a id="post-{{this.id}}" class="text-danger text-center delete">
+          <i class="fa fa-trash-alt"></i>
+        </a>
         <h4>{{this.title}}</h4>
         <p>Created By: {{this.name}} </p>
         <p class="desc">{{this.description}}</p>
-          <a id="post-{{this.id}}" class="text-danger pull-right delete">
-            <i class="fa fa-trash-alt"></i>
-          </a>
       </div>
     </li>
     {{/each}}
