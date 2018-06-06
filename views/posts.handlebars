@@ -1,20 +1,22 @@
+<div class="flex-container posts-main-section">
+
 <div class="container">
   <div class="row">
     <div class="col-md-4 offset-md-4 text-center">
         <br>
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal1">Create Post</button>
+      <button type="button" class="btn btn-info btn-lg post-btn" data-toggle="modal" data-target="#exampleModal1">Create Post</button>
     </div>
     
-  <ul class="row notes">
+  <ul class="row notes offset-sm-1">
     {{#each posts}}
     <li>
       <div class="rotate-1 lazur-bg">
         <h4>{{this.title}}</h4>
         <p>Created By: {{this.name}} </p>
-        <p>{{this.description}}</p>
-        <a id="post-{{this.id}}" class="text-danger pull-right delete">
-          <i class="fa fa-trash-o "></i>
-        </a>
+        <p class="desc">{{this.description}}</p>
+          <a id="post-{{this.id}}" class="text-danger pull-right delete">
+            <i class="fa fa-trash-alt"></i>
+          </a>
       </div>
     </li>
     {{/each}}
@@ -46,7 +48,4 @@
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script> 
-<script src="/assets/js/postit.js"></script>
+</div>
