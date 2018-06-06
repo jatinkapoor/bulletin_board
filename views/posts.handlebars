@@ -27,12 +27,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content mymodal">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        Create a Post !!
       </div>
       <div class="modal-body">
-        <form method="POST" action="/posts">
+        <form id="my-post-form" method="POST" action="/posts">
           <div class="form-group name">
             <input name="title" type="text" class="form-control" placeholder="Enter Title">
           </div>
@@ -49,3 +47,14 @@
   </div>
 </div>
 </div>
+<script>
+  const postsForm = document.getElementById("my-post-form");
+  postsForm.onsubmit = function (e) {
+    e.preventDefault();
+    if (postsForm.title.value && postsForm.description.value) {
+      postsForm.setAttribute("method", "POST");
+      postsForm.setAttribute("action", "/posts");
+      postsForm.submit();
+    }
+  }
+</script>

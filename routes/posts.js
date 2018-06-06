@@ -7,12 +7,11 @@ router.get('/', (req, res, next) => {
     order: [
       ['id', 'DESC'],
     ],
-  }
-  ).then((data) => {  
+  }).then((data) => {
     const hbsObj = {
       posts: data
     }
-    res.render('posts', hbsObj );
+    res.render('posts', hbsObj);
   });
 });
 
@@ -26,28 +25,40 @@ router.post('/', (req, res, next) => {
     email: req.user.email,
     name: req.user.username,
   }).then(post => {
-    console.log('post created');
-    console.log(post);
     res.redirect('/posts');
-  }).catch((err)=> {
+  }).catch((err) => {
     res.redirect('/posts');
   })
-  
+
 });
 
 router.delete('/:id', (req, res) => {
-  console.log("$$$$$$$$$$$$$$$$$$$$");
+  const email = req.user.email;
   const id = req.params.id;
-  db.Post.destroy({
+  db.Post.findOne({
     where: {
-      id: id
+      id: id,
     }
-  }
-).then((response)=> {
-    res.status(200).send("deleted");
-  }).catch((error) => {
-    res.status(500).send("Deletion Failed");
-  });
+  }).then((post) => {
+    if (post.email === email) {
+      console.log("in deletion");
+      db.Post.destroy({
+        where: {
+          id: id
+        }
+      }).then((response) => {
+        res.status(200).send("Deleted");
+      }).catch((error) => {
+        res.status(500).send("Deletion Failed");
+      });
+    } else {
+      res.status(403).send("Deletion Failed");
+    }
+  }).catch((err) => {
+    res.status(500).json("Deletion failed");
+  })
 });
+
+
 
 module.exports = router;
