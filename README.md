@@ -24,7 +24,7 @@ Carl needs a mechanic and is looking for recommendations.
 
 **Registration Page**
 
-![alt text](/projectdocs/images/registationPage.png "Posts Page")
+![alt text](/projectdocs/images/registrationPage.png "Registration Page")
 
 **Profile Page**
 
