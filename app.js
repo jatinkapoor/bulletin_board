@@ -19,6 +19,7 @@ const homeRouter = require('./routes/home');
 const logoutRouter = require('./routes/logout');
 const profileRouter = require('./routes/profile');
 const db = require('./models/');
+const opt = require('./config/passportdb.json');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -34,15 +35,8 @@ app.engine('handlebars', expressHandleBars({
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
-const options = {
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: 'hello123',
-  database: 'bulletin_board',
-};
+const sessionStore = new MySQLStore(opt.options);
 
-const sessionStore = new MySQLStore(options);
 app.use(session({
   secret: 'qazwsxedc',
   resave: false,
@@ -52,13 +46,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-// app.use((req, res, next) => {
-//   res.locals.isAuthenticated = req.isAuthenticated();
-//   next();
-// });
-
-
 
 app.use('/', homeRouter);
 app.use('/login', loginRouter);

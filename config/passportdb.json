@@ -1,0 +1,9 @@
+{
+  "options": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "hello123",
+    "database": "bulletin_board"
+  }
+}
