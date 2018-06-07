@@ -16,4 +16,4 @@ Carl needs a mechanic and is looking for recommendations.
 
 **Wireframe**
 
-![alt text](https://github.com/Rikkihon/GroupProject2/blob/master/projectdocs/images/project2-wireframe.jpg "Sticky Note Board")
+![alt text](https://github.com/Rikkihon/GroupProject2/blob/master/projectdocs/images/homePage.png "Sticky Note Board")
