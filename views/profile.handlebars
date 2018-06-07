@@ -1,40 +1,3 @@
-{{!-- <div class="container">
-  {{#if errors}} {{#each errors}}
-  <div class="alert alert-danger"> {{this.msg}} </div>
-  {{/each}} {{/if}}
-</div>
-<div class="register modal-dialog text-center">
-  <div class="col-sm-9 main-section">
-    <div class="modal-content">
-      <div class="col-12 user-img">
-        <img src="/assets/img/face.png" alt="">
-      </div>
-      <div class="col-12 form-input">
-        <form method="POST" action="/register">
-          <div class="form-group name">
-            {{person.name}}
-          </div>
-          <div class="form-group name">
-            {{person.email}}
-          </div>
-          {{!-- <div class="form-group">
-            <input id="registration-email" name="email" type="email" class="form-control" placeholder="Enter Email">
-          </div>
-          <div class="form-group password">
-            <input id="registration-pass" name="password" type="password" class="form-control" placeholder="Enter Password">
-          </div>
-          <div class="form-group password">
-            <input id="registration-pass" name="password" type="password" class="form-control" placeholder="Enter Password">
-          </div> --}}
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">Update Profile</button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Delete Profile</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> --}}
-
-
 <div class="login-main">
   <div class="login modal-dialog login-modal-dialog text-center">
     <div class="col-sm-9 main-section login-main-section">
@@ -45,14 +8,14 @@
         <div class="col-12 form-input">
           <div id="my-registration-form">
             <div class="form-group login-form-group login-form-group-email">
-              <div class="form-control">Jatin</div>
+              <div class="form-control"> {{person.name}}</div>
             </div>
             <div class="form-group login-form-group login-form-group-email">
-              <div class="form-control">jk@jk.com</div>
+              <div class="form-control"> {{person.email}}</div>
             </div>
-            <button id="login-form" name="login" type="button" class="btn btn-light login-button"  data-toggle="modal" data-target="#exampleModal1">
+            <button id="login-form" name="login" type="button" class="btn btn-light login-button" data-toggle="modal" data-target="#exampleModal1">
               <i class="fa fa-pencil-alt"></i>Update</button>
-            
+
             <button id="login-form" name="login" type="button" class="btn btn-danger login-button" data-toggle="modal" data-target="#exampleModal">
               <i class="far fa-trash-alt"></i>Delete</button>
           </div>
@@ -67,10 +30,6 @@
   </div>
 </div>
 
-
-
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content mymodal">
@@ -80,7 +39,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/profile">
+        <form id="my-delete-form">
           <div>Are You sure?</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -92,34 +51,13 @@
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content mymodal">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="/profile">
-          <div class="form-group name">
-            <input id="registration-name" name="username" type="text" class="form-control" placeholder="Enter Name">
-          </div>
-          <div class="form-group">
-            <input id="registration-email" name="email" type="email" class="form-control" placeholder="Enter Email">
-          </div>
-          <div class="form-group password">
-            <input id="registration-pass" name="password" type="password" class="form-control" placeholder="Enter Password">
-          </div>
-          <div class="form-group password">
-            <input id="registration-pass" name="confirmPassword" type="password" class="form-control" placeholder="Enter Password">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Confirm</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+<script>
+  const deleteForm = document.getElementById('my-delete-form');
+  deleteForm.onsubmit = function (e) {
+    e.preventDefault();
+    console.log('in delete form');
+    deleteForm.setAttribute("method", "GET");
+    deleteForm.setAttribute("action", "/profile/delete");
+    deleteForm.submit();
+  }
+</script>

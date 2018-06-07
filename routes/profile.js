@@ -6,17 +6,16 @@ const passport = require('passport');
 const db = require('../models/');
 const bcrypt = require('bcryptjs');
 
-
 router.use(bodyParser.urlencoded({
   extended: true,
 }));
-router.use(bodyParser.json());
 
+router.use(bodyParser.json());
 
 router.get('/', (req, res) => {
   db.User.findOne({
     where: {
-      email: req.user.email,
+      id: req.user.id,
     },
     attributes: ['id', 'username', 'email']
   }).then((user) => {
@@ -28,27 +27,20 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
-  req.checkBody('password-confirm', 'Passwords do not match, please try again.').equals(req.body.password);
-  const username = req.body.username;
-  const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
-  const email = req.body.email;
-
-  console.log(username);
-  console.log(password);
-  console.log(confirmPassword);
-  console.log(email);
-
-  const errors = req.validationErrors();
-  if (errors) {
-    res.render('profile', {
-      title: 'Registration Error',
-      errors,
-    });
-  } else {
-    res.redirect('/');
-  }
+router.get('/delete', (req, res) => {
+  const id = req.user.id;
+  db.User.destroy({
+    where: {
+      id: req.user.id,
+    }
+  }).then(function (result) {
+    res.status(200).redirect('/logout');
+  }).catch((error)=> {
+    console.log(error);
+    res.status(500).redirect('/profile');
+  })
 });
+
+
 
 module.exports = router;

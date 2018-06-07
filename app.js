@@ -58,6 +58,8 @@ app.use(passport.session());
 //   next();
 // });
 
+
+
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
@@ -88,6 +90,12 @@ passport.use(new LocalStrategy(
       done(err);
     });
   }));
+
+
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain');
+  res.send("User-agent: *\nDisallow: /");
+});
 
 app.use((req, res, next) => {
   const error = new Error('Not Found');
