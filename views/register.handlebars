@@ -1,0 +1,97 @@
+<div class="container flash-msgs text-center">
+  <div class="row error-messages">
+    {{#showErrors}}
+    <ul class="col-6 offset-2 no-bullets">
+      {{#errors}}
+      <li>
+        <div class="alert alert-danger alert-dismissible fade show offset-md-4" role="alert">
+          <strong id="error-msg">{{.}}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </li>
+      {{/errors}}
+    </ul>
+    {{/showErrors}}
+  </div>
+</div>
+
+<div class="login-main">
+  <div class="login modal-dialog login-modal-dialog text-center">
+    <div class="col-sm-9 main-section login-main-section">
+      <div class="modal-content login-modal-content">
+        <div class="col-12 user-img">
+          <img src="/assets/img/face.png" alt="">
+        </div>
+        <div class="col-12 form-input">
+          <form id="my-registration-form">
+            <div class="form-group login-form-group login-form-group-email">
+              <input id="registration-username" name="username" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="form-group login-form-group login-form-group-email">
+              <input id="registration-email" name="email" type="email" class="form-control" placeholder="Enter Email">
+            </div>
+            <div class="form-group login-form-group login-form-group-password">
+              <input id="registration-pass" name="password" type="password" class="form-control" placeholder="Enter Password">
+            </div>
+            <div class="form-group login-form-group login-form-group-password">
+              <input id="registration-confpass" name="confirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+            </div>
+            <button id="registration-form" name="login" type="submit" class="btn btn-lg btn-success register-button">
+              <i class="fas fa-sign-in-alt"></i>Register</button>
+          </form>
+        </div>
+        <div class="col-12">
+          <p class="message registered-text">Already Registered ?
+            <a href="/login" class="register-link"> Login </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const registrationForm = document.getElementById('my-registration-form');
+  registrationForm.onsubmit = function (e) {
+    e.preventDefault();
+    console.log(registrationForm.username.value);
+    console.log(registrationForm.email.value);
+    console.log(registrationForm.password.value);
+    console.log(registrationForm.confirmPassword.value);
+
+    if (! registrationForm.username.value || 
+            ! registrationForm.email.value ||
+              ! registrationForm.password.value || 
+                ! registrationForm.confirmPassword.value) {
+
+      $('.error-messages').html(`
+      <div class="alert alert-danger alert-dismissible fade show offset-md-4" role="alert">
+        <strong id="error-msg">All fields are mandatory</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>`);              
+    } 
+
+    if (!(registrationForm.password.value === registrationForm.confirmPassword.value)) {
+      $('.error-messages').html(`
+        <div class="alert alert-danger alert-dismissible fade show offset-md-4" role="alert">
+        <strong id="error-msg">Password and Confirm Password do not match</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>`);
+    }
+
+    if (registrationForm.username.value
+          && registrationForm.email.value
+            && registrationForm.password.value
+              && registrationForm.confirmPassword.value 
+                && registrationForm.confirmPassword.value === registrationForm.password.value) {
+      registrationForm.setAttribute("method", "POST");
+      registrationForm.setAttribute("action", "/register");
+      registrationForm.submit();
+    }
+  }
+</script>

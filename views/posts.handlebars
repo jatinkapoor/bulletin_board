@@ -1,0 +1,65 @@
+<div class="flex-container posts-main-section">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 text-center">
+        <br>
+      <button type="button" class="btn btn-info btn-lg post-btn" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-plus"></i> Create Post</button>
+    </div>
+    
+  <ul class="row notes offset-sm-1">
+    {{#each posts}}
+    <li>
+      <div class="rotate-1 lazur-bg">
+        <a id="post-{{this.id}}" class="text-danger text-center delete">
+          <i class="fa fa-trash-alt"></i>
+        </a>
+        <h4 class="desc">{{this.title}}</h4>
+        <p>Created By: {{this.name}} </p>
+        <p class="desc">{{this.description}}</p>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content mymodal">
+      <div class="modal-header">
+        Create a Post !!
+      </div>
+      <div class="modal-body">
+        <form id="my-post-form" method="POST" action="/posts">
+          <div class="form-group name">
+            <input id="title" name="title" type="text" class="form-control" maxlength="30" placeholder="Enter Title">
+          </div>
+          <div class="form-group name">
+            <input id="description" name="description" type="text" class="form-control" maxlength="100" placeholder="Enter Description">
+          </div>    
+          <div class="modal-footer">
+            <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="submit-post" type="submit" class="btn btn-primary">Confirm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<script>
+  const postsForm = document.getElementById("my-post-form");
+  postsForm.onsubmit = function (e) {
+    e.preventDefault();
+    if (postsForm.title.value && postsForm.description.value) {
+      postsForm.setAttribute("method", "POST");
+      postsForm.setAttribute("action", "/posts");
+      postsForm.submit();
+    }
+  }
+</script>

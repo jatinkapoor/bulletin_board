@@ -1,0 +1,51 @@
+{
+  "name": "bulletin_board",
+  "version": "1.0.0",
+  "description": "bulletin_board project",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jatinkapoor/bulletin_board.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jatinkapoor/bulletin_board.git"
+  },
+  "homepage": "https://github.com/jatinkapoor/bulletin_board#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "config": "^1.30.0",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "express-flash-messages": "^0.1.1",
+    "express-handlebars": "^3.0.0",
+    "express-mysql-session": "^1.3.0",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.2.0",
+    "jsonwebtoken": "^8.2.1",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "nodemon": "^1.17.5",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.37.10"
+  },
+  "devDependencies": {
+    "chance": "^1.0.16",
+    "cypress": "^3.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "random": "^2.0.3"
+  }
+}
